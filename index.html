@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <h1>Products:</h1>
+    <div id="display"></div>
+    <hr>
+    <h1>Cart:</h1>
+    <div id="myCart"></div>
+    <h1 id="total">TOTAL:</h1>
+    <script>
+        products =
+            [
+                { itemName: "apple", itemPrice: 3 },
+                { itemName: "waterMelon", itemPrice: 10 },
+                { itemName: "orange", itemPrice: 4 },
+                { itemName: "avocado", itemPrice: 8 },
+                { itemName: "onion", itemPrice: 2 },
+                { itemName: "tomato", itemPrice: 3 },
+                { itemName: "bazil", itemPrice: 4 },
+                { itemName: "mint", itemPrice: 5 },
+
+            ]
+        cart = []
+        total = 0
+        document.getElementById("total").innerHTML = `Total: ${total}$`
+
+
+        const displayProd = () => document.getElementById("display").innerHTML = products.map((itm, ind) => `<button onclick="buy(${ind})">BUY</button> ${itm.itemName}-------------${itm.itemPrice}$<br>`).join("")
+
+        displayProd()
+
+        const buy = (index) => {
+            total = 0
+            cart.push(products[index])
+            document.getElementById("myCart").innerHTML = cart.map((itm, ind) => `${itm.itemName}<button onclick ="removeItem(${ind})">Remove</button><br>`).join("")
+            cart.forEach(itm => {
+                total += itm.itemPrice
+            });
+            document.getElementById("total").innerHTML = `Total: ${total}$`
+            return total
+        }
+
+        const removeItem = (index) => {
+
+            total -= cart[index].itemPrice
+            document.getElementById("total").innerHTML = `Total: ${total}$`
+            cart.splice(cart[index], 1)
+            document.getElementById("myCart").innerHTML = cart.map((itm, ind) => `${itm.itemName}<button onclick ="removeItem(${ind})">Remove</button><br>`).join("")
+            return total
+            
+        }
+
+
+
+
+
+
+
+
+    </script>
+</body>
+
+</html>
