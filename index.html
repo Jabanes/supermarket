@@ -18,14 +18,14 @@
     <script>
         products =
             [
-                { itemName: "apple", itemPrice: 3 },
-                { itemName: "waterMelon", itemPrice: 10 },
-                { itemName: "orange", itemPrice: 4 },
-                { itemName: "avocado", itemPrice: 8 },
-                { itemName: "onion", itemPrice: 2 },
-                { itemName: "tomato", itemPrice: 3 },
-                { itemName: "bazil", itemPrice: 4 },
-                { itemName: "mint", itemPrice: 5 },
+                { itemName: "apple", itemPrice: 3, itemQuant : 0 },
+                { itemName: "waterMelon", itemPrice: 10, itemQuant : 0  },
+                { itemName: "orange", itemPrice: 4, itemQuant : 0  },
+                { itemName: "avocado", itemPrice: 8, itemQuant : 0  },
+                { itemName: "onion", itemPrice: 2, itemQuant : 0  },
+                { itemName: "tomato", itemPrice: 3, itemQuant : 0  },
+                { itemName: "bazil", itemPrice: 4, itemQuant : 0  },
+                { itemName: "mint", itemPrice: 5, itemQuant : 0  },
 
             ]
         cart = []
@@ -41,13 +41,15 @@
             total = 0
             if (!cart.includes(products[index])){
                 cart.push(products[index])
+                console.table(cart);
             }
             else{
                 console.log("Already in cart!");
                 
             }
             
-            document.getElementById("myCart").innerHTML = cart.map((itm, ind) => `${itm.itemName}<button onclick ="removeItem(${ind})">Remove</button><br>`).join("")
+            
+            document.getElementById("myCart").innerHTML = cart.map((itm, ind) => `${itm.itemName}, ${itm.itemQuant}<button onclick ="removeItem(${ind})">Remove</button><br>`).join("")
             cart.forEach(itm => {
                 total += itm.itemPrice
             });
