@@ -39,7 +39,14 @@
 
         const buy = (index) => {
             total = 0
-            cart.push(products[index])
+            if (!cart.includes(products[index])){
+                cart.push(products[index])
+            }
+            else{
+                console.log("Already in cart!");
+                
+            }
+            
             document.getElementById("myCart").innerHTML = cart.map((itm, ind) => `${itm.itemName}<button onclick ="removeItem(${ind})">Remove</button><br>`).join("")
             cart.forEach(itm => {
                 total += itm.itemPrice
